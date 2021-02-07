@@ -22,18 +22,33 @@
 
 
 class User {
-    // add one overloaded constructor with all optional parameters at the end in an array
+    // add one  constructor with optional parameters at the end in an array
     constructor(name, pass){
-        this.id = uidGet(user);
+        this.id = uidGet("USER");
         this.name = name;
         this.pass = pass;
+    }
+
+    print(){
+        console.log(`------`);
+        for(const property in this){
+            console.log(`${this[property]} `);
+        }
     }
 
 }
 
 class Buyer extends User{
-    constructor(){
-        
+    constructor(name, pass){
+        super(name, pass);
+    }
+
+    grantPrime(){
+        this.prime = true;
+    }
+
+    revokePrime(){
+        this.prime = false;
     }
 }
 
@@ -146,9 +161,13 @@ function startAmazonSim(){
     // Driver function testing functionality of Amazon services design
     //
 
-  //let myCard = new PaymentMethod("PYPL", uidGet("Pay"));
+    let myCard = new PaymentMethod("PYPL", uidGet("Pay"));
     let myCard2 = new PaymentMethod("VISA", uidGet('Pay'));
-    console.log(uidGet("Pay"));
-    console.log(myCard2);
+    console.log(myCard, myCard2);
+
+    let pitom = new Buyer("pitoms", "soopersecurepass");
+    pitom.grantPrime();
+    pitom.print();
+
 
 }
